@@ -204,6 +204,7 @@ export default function App() {
   }, []);
 
   const navLinks = [
+    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'History', href: '#history' },
     { name: 'Departments', href: '#departments' },
@@ -338,8 +339,8 @@ export default function App() {
       <section id="home" className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-[var(--bg)]">
         <div className="absolute inset-0 z-0 bg-[var(--bg2)] transition-colors duration-300">
           <div className="absolute inset-0 z-[1]">
-            <img src={gcee} alt="GCEE Background" className="w-full h-full object-cover opacity-20 dark:opacity-60 mix-blend-overlay dark:mix-blend-screen transition-opacity duration-300" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/80 to-[var(--bg)]/20 dark:to-transparent"></div>
+            <img src={gcee} alt="GCEE Background" className="w-full h-full object-cover opacity-30 dark:opacity-75 mix-blend-overlay dark:mix-blend-screen transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/75 to-[var(--bg)]/15 dark:to-transparent"></div>
           </div>
           <div className="absolute inset-0 z-[2] bg-[linear-gradient(rgba(0,212,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,212,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] animate-grid-shift"></div>
           <div className="absolute inset-0 overflow-hidden z-[2]">
@@ -359,8 +360,8 @@ export default function App() {
 
           <Reveal direction="up" delay={0.2}>
             <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] mb-6">
-              <span className="block font-[Noto_Sans_Tamil,sans-serif] text-3xl md:text-4xl lg:text-5xl text-[var(--text)] mb-4">அரசு பொறியியல் கல்லூரி, ஈரோடு</span>
-              <span className="block text-[var(--text)]">Government College of</span>
+              <span className="block text-[var(--text)]">Government</span>
+              <span className="block text-[var(--text)]">College of</span>
               <span className="block text-gradient">Engineering, Erode</span>
             </h1>
           </Reveal>
@@ -490,7 +491,7 @@ export default function App() {
                 <div className="absolute -inset-4 md:-inset-6 bg-gradient-to-br from-[var(--primary)]/20 to-[var(--gold)]/20 rounded-[32px] md:rounded-[40px] blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-700"></div>
 
                 <div className="w-full aspect-[4/3] md:aspect-[3/4] xl:aspect-[4/5] rounded-[24px] md:rounded-[32px] bg-gradient-to-br from-[#0a1520] to-[#020c18] border border-white/10 overflow-hidden relative shadow-2xl z-10">
-                  <img src={gce1} alt="GCEE Campus" className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity brightness-110 contrast-125 transition-transform duration-1000 group-hover:scale-105" />
+                  <img src={gce1} alt="GCEE Campus" className="absolute inset-0 w-full h-full object-cover opacity-80 brightness-110 contrast-125 transition-transform duration-1000 group-hover:scale-105" />
 
                   {/* Subtle dark gradient overlay from bottom */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#020c18]/90 via-[#020c18]/40 to-transparent"></div>
@@ -924,121 +925,149 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="relative bg-[#020c18] overflow-hidden pt-20">
+      <footer className="relative bg-gradient-to-br from-[#0a0f1f]/80 to-[#020c18]/90 backdrop-blur-2xl border-t border-white/10 overflow-hidden pt-20">
         <canvas ref={footerCanvasRef} className="absolute inset-0 pointer-events-none z-0" />
 
         <div className="ft-orb ft-orb-1 absolute rounded-full blur-[110px] pointer-events-none z-0 w-[560px] h-[560px] bg-[radial-gradient(circle,rgba(0,180,255,0.14)_0%,transparent_70%)] -top-[180px] -left-[120px] animate-ft-orb-1"></div>
         <div className="ft-orb ft-orb-2 absolute rounded-full blur-[110px] pointer-events-none z-0 w-[420px] h-[420px] bg-[radial-gradient(circle,rgba(99,51,220,0.11)_0%,transparent_70%)] bottom-[30px] -right-[80px] animate-ft-orb-2"></div>
 
-        <div className="relative z-10 max-w-[1240px] mx-auto px-8 pb-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 items-start">
+        <Reveal direction="up" delay={0.1}>
+          <div className="relative z-10 max-w-[1240px] mx-auto px-8 pb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 items-start divide-y md:divide-y-0 md:divide-x divide-white/10">
 
-            {/* Brand */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="relative w-[60px] h-[60px] rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-md shadow-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500">
-                  <img src={logo} alt="GCEE" className="w-[80%] h-[80%] object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
+              {/* 1. Locate Us */}
+              <div className="space-y-6 md:pl-0">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="relative w-[60px] h-[60px] rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-md shadow-xl overflow-hidden group hover:scale-105 transition-all duration-500">
+                    <img src={logo} alt="GCEE" className="w-[80%] h-[80%] object-contain opacity-80 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <div className="font-bold">
+                    <strong className="block text-white text-[1rem] tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#00d4ff] to-[#3b82f6]">GCE, ERODE</strong>
+                    <em className="not-italic text-[0.7rem] text-white/50">Formerly IRTT · Est. 1984</em>
+                  </div>
                 </div>
-                <div className="font-bold">
-                  <strong className="block text-white text-[0.93rem] tracking-tight text-gradient">GCE, ERODE</strong>
-                  <em className="not-italic text-[0.68rem] text-white/40">Formerly IRTT · Est. 1984</em>
+                
+                <div className="text-[0.7rem] font-bold uppercase tracking-[2px] text-white/90 mb-2 pb-2 inline-block relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#00b4ff] after:to-transparent">
+                  Locate Us
                 </div>
-              </div>
-              <p className="text-[0.78rem] font-light leading-loose text-white/40">
-                A premier government engineering institution dedicated to technical excellence and innovation since 1984.
-              </p>
-              <div className="flex gap-2">
-                {['NAAC', 'AICTE', 'NIRF'].map(p => (
-                  <span key={p} className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[0.62rem] font-bold text-[var(--primary)] tracking-wider">
-                    {p}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Links 1 */}
-            <div>
-              <div className="text-[0.66rem] font-bold uppercase tracking-[2.8px] text-white/90 mb-6 pb-3 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-6 after:h-0.5 after:bg-gradient-to-r after:from-[#00b4ff] after:to-[#6333dc]">
-                Quick Links
-              </div>
-              <ul className="space-y-2 text-[0.78rem] text-white/40">
-                {['Mandatory Disclosure', 'Help Desk', 'EDC', 'IPDC', 'GCEE Mail', 'NPTEL', 'Exam Cell'].map(link => (
-                  <li key={link}>
-                    <a href="#" className="flex items-center gap-2 transition-all duration-300 hover:text-white hover:translate-x-1">
-                      <span className="w-1 h-1 rounded-full bg-[var(--primary)] opacity-30"></span>
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Links 2 */}
-            <div>
-              <div className="text-[0.66rem] font-bold uppercase tracking-[2.8px] text-white/90 mb-6 pb-3 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-6 after:h-0.5 after:bg-gradient-to-r after:from-[#00b4ff] after:to-[#6333dc]">
-                Resources
-              </div>
-              <ul className="space-y-2 text-[0.78rem] text-white/40">
-                {['Academic Schedule', 'Staff Forms', 'Alumni Network', 'Anti-Ragging', 'Grievance Redressal', 'Transport'].map(link => (
-                  <li key={link}>
-                    <a href="#" className="flex items-center gap-2 transition-all duration-300 hover:text-white hover:translate-x-1">
-                      <span className="w-1 h-1 rounded-full bg-[var(--primary)] opacity-30"></span>
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <div className="text-[0.66rem] font-bold uppercase tracking-[2.8px] text-white/90 mb-6 pb-3 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-6 after:h-0.5 after:bg-gradient-to-r after:from-[#00b4ff] after:to-[#6333dc]">
-                Contact
-              </div>
-              <div className="space-y-4">
-                <a href="https://www.google.com/maps/place/Government+College+of+Engineering+Erode/@11.2753235,77.6065406,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba96d7810fe32d5:0x85349facfaae0dc8!8m2!3d11.2753235!4d77.6091155!16s%2Fg%2F1pp2xjvw2?entry=ttu" target="_blank" rel="noopener noreferrer" className="block bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-md group hover:border-[var(--primary)] hover:bg-white/10 transition-all duration-300">
+                
+                <a href="https://www.google.com/maps/place/GCE+Erode/@11.4172244,77.6632854,17z/data=!4m6!3m5!1s0x3ba969379d53362f:0xe017bb8ce906b79a!8m2!3d11.4172234!4d77.6632629!16s%2Fg%2F11h8cs64f1" target="_blank" rel="noopener noreferrer" className="block bg-white/5 border border-white/10 rounded-xl p-5 backdrop-blur-md group hover:border-[#00d4ff]/50 hover:bg-white/10 hover:shadow-[0_10px_30px_rgba(0,212,255,0.1)] transition-all duration-300 transform hover:-translate-y-1">
                   <div className="flex items-start justify-between">
                     <div>
-                      <div className="text-[0.62rem] font-bold uppercase tracking-widest text-[var(--primary)] mb-2 flex items-center gap-1.5">
-                        <MapPin size={12} /> Address
+                      <div className="text-[0.65rem] font-bold uppercase tracking-widest text-[#00d4ff] mb-2 flex items-center gap-2">
+                        <MapPin size={14} className="animate-bounce" /> Address
                       </div>
-                      <p className="text-[0.75rem] text-white/50 leading-relaxed group-hover:text-white/80 transition-colors">
-                        Perundurai Road, Erode – 638052,<br />Tamilnadu, India.
+                      <p className="text-[0.8rem] text-white/60 leading-relaxed group-hover:text-white/90 transition-colors font-medium">
+                        Government College of Engineering (IRTT)<br />
+                        Vasavi College Post, Erode<br />
+                        Tamilnadu - 638 316, India
                       </p>
                     </div>
-                    <div className="text-white/30 group-hover:text-[var(--primary)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">
-                      <ExternalLink size={16} />
+                    <div className="text-white/30 group-hover:text-[#00d4ff] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">
+                      <ExternalLink size={18} />
                     </div>
                   </div>
                 </a>
-                <div className="flex flex-col gap-2">
-                  <a href="tel:04242533579" className="flex items-center gap-3 text-[0.74rem] text-white/60 hover:text-[var(--primary)] transition-colors">
-                    <Phone size={14} /> +91 0424 2533579
-                  </a>
-                  <a href="mailto:principal@gcee.ac.in" className="flex items-center gap-3 text-[0.74rem] text-white/60 hover:text-[var(--primary)] transition-colors">
-                    <Mail size={14} /> principal@gcee.ac.in
-                  </a>
+              </div>
+
+              {/* 2. Downloads */}
+              <div className="md:pl-8 lg:pl-12 pt-8 md:pt-0">
+                <div className="text-[0.7rem] font-bold uppercase tracking-[2px] text-white/90 mb-6 pb-2 inline-block relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-1/2 after:h-0.5 after:bg-gradient-to-r after:from-[#00b4ff] after:to-transparent">
+                  Downloads
                 </div>
-                <div className="flex gap-2 pt-2">
-                  {[Facebook, Twitter, Linkedin, Youtube].map((Icon, i) => (
-                    <a key={i} href="#" className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-[var(--primary)] hover:border-[var(--primary)] transition-all duration-300 hover:-translate-y-1">
-                      <Icon size={16} />
-                    </a>
+                <ul className="space-y-4 text-[0.85rem] font-medium text-white/60">
+                  {['Academic Calendar', 'Syllabus & Regulations', 'Application Forms', 'Exam Time Table', 'Student Handbooks'].map(link => (
+                    <li key={link}>
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 transition-all duration-300 hover:text-white relative w-fit">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]/40 group-hover:bg-[#00d4ff] group-hover:shadow-[0_0_8px_#00d4ff] transition-all"></span>
+                        <span className="relative z-10">{link}</span>
+                        {/* Smooth animated underline */}
+                        <span className="absolute bottom-[-2px] left-0 w-0 h-[1px] bg-gradient-to-r from-[#00d4ff] to-[#3b82f6] transition-all duration-300 group-hover:w-full"></span>
+                      </a>
+                    </li>
                   ))}
+                </ul>
+              </div>
+
+              {/* 3. Quick Links */}
+              <div className="md:pl-8 lg:pl-12 pt-8 lg:pt-0">
+                <div className="text-[0.7rem] font-bold uppercase tracking-[2px] text-white/90 mb-6 pb-2 inline-block relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-1/2 after:h-0.5 after:bg-gradient-to-r after:from-[#7c3aed] after:to-transparent">
+                  Quick Links
                 </div>
+                <ul className="space-y-4 text-[0.85rem] font-medium text-white/60">
+                  {[
+                    { name: 'MANDATORY DISCLOSURE', url: 'https://www.gcee.ac.in/AICTE/MandatoryDisclosure2025-26.pdf' },
+                    { name: 'HELP DESK', url: 'https://www.gcee.ac.in/HelpDesk.php' },
+                    { name: 'EDC', url: 'https://www.gcee.ac.in/edp.php' },
+                    { name: 'IPDC', url: 'https://www.gcee.ac.in/IPDC.php' },
+                    { name: 'GCEE MAIL', url: 'https://gcee.ac.in:2096/' },
+                    { name: 'NPTEL', url: 'https://sites.google.com/view/nptel-gce-erode/home' },
+                    { name: 'GCEE EXAM CELL', url: 'https://examgcee.blogspot.com/' },
+                    { name: 'GCEE(IRTT) ALUMNI', url: 'https://www.gcee.ac.in/IPDC.php' }
+                  ].map(link => (
+                    <li key={link.name}>
+                      <a href={link.url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 transition-all duration-300 hover:text-white relative w-fit">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#7c3aed]/40 group-hover:bg-[#7c3aed] group-hover:shadow-[0_0_8px_#7c3aed] transition-all"></span>
+                        <span className="relative z-10">{link.name}</span>
+                        {/* Smooth animated underline */}
+                        <span className="absolute bottom-[-2px] left-0 w-0 h-[1px] bg-gradient-to-r from-[#7c3aed] to-[#d946ef] transition-all duration-300 group-hover:w-full"></span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* 4. Contact Us */}
+              <div className="md:pl-8 lg:pl-12 pt-8 lg:pt-0">
+                <div className="text-[0.7rem] font-bold uppercase tracking-[2px] text-white/90 mb-6 pb-2 inline-block relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-1/2 after:h-0.5 after:bg-gradient-to-r after:from-[#f59e0b] after:to-transparent">
+                  Contact Us
+                </div>
+                <div className="space-y-5">
+                  <div className="flex flex-col gap-3">
+                    <a href="tel:04242533579" className="flex items-center gap-4 text-[0.85rem] font-medium text-white/60 hover:text-white hover:translate-x-1 transition-all group">
+                      <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#f59e0b]/20 group-hover:text-[#f59e0b] group-hover:shadow-[0_0_10px_rgba(245,158,11,0.2)] transition-all">
+                        <Phone size={14} />
+                      </div>
+                      +91 0424 2533579
+                    </a>
+                    <a href="mailto:principal@gcee.ac.in" className="flex items-center gap-4 text-[0.85rem] font-medium text-white/60 hover:text-white hover:translate-x-1 transition-all group">
+                      <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#f59e0b]/20 group-hover:text-[#f59e0b] group-hover:shadow-[0_0_10px_rgba(245,158,11,0.2)] transition-all">
+                        <Mail size={14} />
+                      </div>
+                      principal@gcee.ac.in
+                    </a>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-white/10">
+                    <div className="text-[0.65rem] font-bold uppercase tracking-widest text-white/40 mb-4">Connect With Us</div>
+                    <div className="flex gap-4">
+                      {/* Social Icons with Glowing Effects using Font Awesome */}
+                      <a href="https://www.facebook.com/people/Gce-Erode/pfbid0Pm6izeW9sSHrQYj7ZUQSL3sBaQtth3i6yK3ZbjMpBqk6HbA6Z1qNNsmTYY7VjR57l/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] hover:shadow-[0_0_15px_rgba(24,119,242,0.6)] hover:-translate-y-1 transition-all duration-300">
+                        <i className="fa-brands fa-facebook-f text-lg"></i>
+                      </a>
+                      <a href="https://x.com/GceErode" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-black hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:-translate-y-1 transition-all duration-300">
+                        <i className="fa-brands fa-x-twitter text-lg"></i>
+                      </a>
+                      <a href="https://www.youtube.com/channel/UCDOtasTYkBrmuZTSNCuo6jg" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] hover:shadow-[0_0_15px_rgba(255,0,0,0.6)] hover:-translate-y-1 transition-all duration-300">
+                        <i className="fa-brands fa-youtube text-lg"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-[0.8rem] text-white/40">
+              <p>© 2025 Government College of Engineering, Erode. All Rights Reserved.</p>
+              <div className="flex gap-6 font-medium">
+                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Sitemap</a>
               </div>
             </div>
           </div>
-
-          <div className="mt-16 pt-8 border-t border-white/5 flex flex-wrap items-center justify-between gap-6 text-[0.72rem] text-white/30">
-            <p>© 2025 Government College of Engineering, Erode. All Rights Reserved.</p>
-            <div className="flex gap-4">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Sitemap</a>
-            </div>
-          </div>
-        </div>
+        </Reveal>
       </footer>
 
       {/* Popups / Modals */}

@@ -14,11 +14,11 @@ import gce9 from '../assets/gce9.jpeg';
 import gce10 from '../assets/gce10.jpeg';
 
 const images = [
-  { src: gce1, alt: 'Campus View 1', caption: 'Lush Green Campus' },
-  { src: gce2, alt: 'Campus View 2', caption: 'Academic Block' },
-  { src: gce3, alt: 'Campus View 3', caption: 'Student Laboratories' },
-  { src: gce4, alt: 'Campus View 4', caption: 'Sports Facilities' },
-  { src: gce5, alt: 'Campus View 5', caption: 'Library Building' },
+  { src: gce1, alt: 'Campus View 1', caption: 'GCE Erode Campus View' },
+  { src: gce2, alt: 'Campus View 2', caption: 'Academic Buildings' },
+  { src: gce3, alt: 'Campus View 3', caption: 'Modern Laboratory Facilities' },
+  { src: gce4, alt: 'Campus View 4', caption: 'Student Learning Environment' },
+  { src: gce5, alt: 'Campus View 5', caption: 'Central Library' },
   { src: gce6, alt: 'Campus View 6', caption: 'Auditorium' },
   { src: gce7, alt: 'Campus View 7', caption: 'Hostel Grounds' },
   { src: gce8, alt: 'Campus View 8', caption: 'Innovation Hub' },
