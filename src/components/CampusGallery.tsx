@@ -2,23 +2,18 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import gce1 from '../assets/gce1.jpeg';
-import gce2 from '../assets/gce2.jpeg';
-import gce3 from '../assets/gce3.jpeg';
 import gce4 from '../assets/gce4.jpeg';
-import gce5 from '../assets/gce5.jpeg';
-import gce6 from '../assets/gce6.jpeg';
-import gce7 from '../assets/gce7.jpeg';
-import gce8 from '../assets/gce8.jpeg';
-import gce9 from '../assets/gce9.jpeg';
-import gce10 from '../assets/gce10.jpeg';
+import libraryEntrance from '../assets/training/library.jpeg';
+import mainCampus from '../assets/maincampus.jpeg';
+import placement from '../assets/placement photo.jpeg';
+import research from '../assets/research.jpeg';
 
 const images = [
-  { src: gce1, alt: 'Campus View 1', caption: 'GCE Erode Campus View' },
-  { src: gce2, alt: 'Campus View 2', caption: 'Academic Buildings' },
-  { src: gce3, alt: 'Campus View 3', caption: 'Modern Laboratory Facilities' },
-  { src: gce4, alt: 'Campus View 4', caption: 'Student Learning Environment' },
-  { src: gce5, alt: 'Campus View 5', caption: 'Central Library' },
+  { src: gce1, alt: 'Campus View 1', caption: 'Lush Green Campus' },
+  { src: gce2, alt: 'Campus View 2', caption: 'Academic Block' },
+  { src: gce3, alt: 'Campus View 3', caption: 'Student Laboratories' },
+  { src: gce4, alt: 'Campus View 4', caption: 'Sports Facilities' },
+  { src: gce5, alt: 'Campus View 5', caption: 'Library Building' },
   { src: gce6, alt: 'Campus View 6', caption: 'Auditorium' },
   { src: gce7, alt: 'Campus View 7', caption: 'Hostel Grounds' },
   { src: gce8, alt: 'Campus View 8', caption: 'Innovation Hub' },
@@ -49,11 +44,11 @@ export const CampusGallery = () => {
     <section className="py-24 bg-[var(--bg)] border-b border-white/5 relative z-20 overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-4 md:px-8">
         <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true, margin: "-50px" }}
-           transition={{ duration: 0.7 }}
-           className="mb-12 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+          className="mb-12 text-center"
         >
           <div className="inline-flex items-center gap-2 bg-[#00d4ff1a] border border-[#00d4ff4d] px-4 py-1.5 rounded-full text-[0.78rem] font-medium text-[var(--primary)] mb-6">
             <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-pulse-slow"></span>
@@ -93,10 +88,10 @@ export const CampusGallery = () => {
                   alt={images[currentIndex].alt}
                   className="w-full h-full object-cover"
                 />
-                
+
                 {/* Gradient Overlay & Caption */}
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#020c18] via-[#020c18]/60 to-transparent pt-32 pb-8 px-8 flex flex-col justify-end">
-                  <motion.div 
+                  <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
@@ -126,11 +121,10 @@ export const CampusGallery = () => {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`h-1.5 transition-all duration-300 rounded-full ${
-                idx === currentIndex 
-                  ? 'bg-[var(--primary)] w-8' 
+              className={`h-1.5 transition-all duration-300 rounded-full ${idx === currentIndex
+                  ? 'bg-[var(--primary)] w-8'
                   : 'bg-[var(--text3)] opacity-30 hover:opacity-100 w-2'
-              }`}
+                }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
           ))}

@@ -115,7 +115,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const [selectedModal, setSelectedModal] = useState<"principal" | "cse" | null>(null);
+  const [selectedModal, setSelectedModal] = useState<string | null>(null);
   const { scrollYProgress } = useScroll();
   const footerCanvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -360,8 +360,8 @@ export default function App() {
 
           <Reveal direction="up" delay={0.2}>
             <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.05] mb-6">
-              <span className="block text-[var(--text)]">Government</span>
-              <span className="block text-[var(--text)]">College of</span>
+              <span className="block font-[Noto_Sans_Tamil,sans-serif] text-3xl md:text-4xl lg:text-5xl text-[var(--text)] mb-4">அரசு பொறியியல் கல்லூரி, ஈரோடு</span>
+              <span className="block text-[var(--text)]">Government College of</span>
               <span className="block text-gradient">Engineering, Erode</span>
             </h1>
           </Reveal>
@@ -795,20 +795,22 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: '🏗️', title: 'Civil Engineering', desc: 'Structural design, construction management, environmental engineering, and infrastructure development.', intake: '60 | UG', color: '#ff6b35' },
-              { icon: '🚗', title: 'Automobile Engineering', desc: 'Vehicle design, powertrain systems, automotive electronics, and sustainable transport technology.', intake: '60 | UG', color: '#00d4ff' },
-              { icon: '⚙️', title: 'Mechanical Engineering', desc: 'Manufacturing, thermodynamics, robotics, CAD/CAM, and advanced materials engineering.', intake: '60 | UG', color: '#7c3aed' },
-              { icon: '⚡', title: 'Electrical & Electronics', desc: 'Power systems, electrical machines, control systems, smart grids, and renewable energy.', intake: '60 | UG', color: '#ffd166' },
-              { icon: '📡', title: 'Electronics & Communication', desc: 'VLSI design, embedded systems, signal processing, wireless communications, and IoT.', intake: '60 | UG', color: '#00d4ff' },
-              { icon: '💻', title: 'Computer Science & Engg', desc: 'Algorithms, software engineering, AI, machine learning, cloud computing, and cybersecurity.', intake: '60 | UG', color: '#10b981' },
-              { icon: '📊', title: 'CSE (Data Science)', desc: 'Big data analytics, statistical modelling, deep learning, visualization, and data engineering.', intake: '60 | UG', color: '#10b981' },
-              { icon: '🌐', title: 'Information Technology', desc: 'Web development, networking, database management, cybersecurity, and enterprise systems.', intake: '60 | UG', color: '#7c3aed' },
-              { icon: '🎓', title: 'M.E. CSE', desc: 'Advanced research in AI, distributed systems, high-performance computing and emerging technologies.', intake: 'PG Program', color: '#ff6b35' }
+              { icon: '🏗️', title: 'Civil Engineering', desc: 'Structural design, construction management, environmental engineering, and infrastructure development.', intake: '60 | UG', color: '#ff6b35', id: 'civil' },
+              { icon: '🚗', title: 'Automobile Engineering', desc: 'Vehicle design, powertrain systems, automotive electronics, and sustainable transport technology.', intake: '60 | UG', color: '#00d4ff', id: 'automobile' },
+              { icon: '⚙️', title: 'Mechanical Engineering', desc: 'Manufacturing, thermodynamics, robotics, CAD/CAM, and advanced materials engineering.', intake: '60 | UG', color: '#7c3aed', id: 'mech' },
+              { icon: '⚡', title: 'Electrical & Electronics', desc: 'Power systems, electrical machines, control systems, smart grids, and renewable energy.', intake: '60 | UG', color: '#ffd166', id: 'eee' },
+              { icon: '📡', title: 'Electronics & Communication', desc: 'VLSI design, embedded systems, signal processing, wireless communications, and IoT.', intake: '60 | UG', color: '#00d4ff', id: 'ece' },
+              { icon: '💻', title: 'Computer Science & Engg', desc: 'Algorithms, software engineering, AI, machine learning, cloud computing, and cybersecurity.', intake: '60 | UG', color: '#10b981', id: 'cse' },
+              { icon: '📊', title: 'CSE (Data Science)', desc: 'Big data analytics, statistical modelling, deep learning, visualization, and data engineering.', intake: '60 | UG', color: '#10b981', id: 'cseds' },
+              { icon: '🌐', title: 'Information Technology', desc: 'Web development, networking, database management, cybersecurity, and enterprise systems.', intake: '60 | UG', color: '#7c3aed', id: 'it' },
+              { icon: '🧬', title: 'Science & Humanities', desc: 'Foundational courses in Mathematics, Physics, Chemistry, and English for first-year students.', intake: 'First Year', color: '#ec4899', id: 'sh' },
+              { icon: '🎓', title: 'M.E. CSE', desc: 'Advanced research in AI, distributed systems, high-performance computing and emerging technologies.', intake: 'PG Program', color: '#ff6b35', id: 'mecse' },
+              { icon: '🏗️', title: 'M.E. Structural Engg', desc: 'Advanced structural analysis, design of concrete and steel structures, and earthquake engineering.', intake: 'PG Program', color: '#ff6b35', id: 'mestruct' }
             ].map((dept, idx) => (
               <div key={dept.title}>
                 <Reveal delay={idx * 0.05}>
                   <div
-                    onClick={dept.title === 'Computer Science & Engg' ? () => setSelectedModal('cse') : undefined}
+                    onClick={() => setSelectedModal(dept.id)}
                     className="group relative bg-[var(--surface)] border border-[var(--border)] rounded-[20px] p-8 cursor-pointer transition-all duration-400 hover:-translate-y-2 hover:border-[var(--primary)] hover:shadow-[0_20px_40px_rgba(0,212,255,0.15)] overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-[var(--glow)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
                     <div className="relative z-10">
@@ -928,8 +930,8 @@ export default function App() {
       <footer className="relative bg-gradient-to-br from-[#0a0f1f]/80 to-[#020c18]/90 backdrop-blur-2xl border-t border-white/10 overflow-hidden pt-20">
         <canvas ref={footerCanvasRef} className="absolute inset-0 pointer-events-none z-0" />
 
-        <div className="ft-orb ft-orb-1 absolute rounded-full blur-[110px] pointer-events-none z-0 w-[560px] h-[560px] bg-[radial-gradient(circle,rgba(0,180,255,0.14)_0%,transparent_70%)] -top-[180px] -left-[120px] animate-ft-orb-1"></div>
-        <div className="ft-orb ft-orb-2 absolute rounded-full blur-[110px] pointer-events-none z-0 w-[420px] h-[420px] bg-[radial-gradient(circle,rgba(99,51,220,0.11)_0%,transparent_70%)] bottom-[30px] -right-[80px] animate-ft-orb-2"></div>
+        <div className="ft-orb ft-orb-1 absolute rounded-full blur-[110px] pointer-events-none z-0 w-[560px] h-[560px] bg-[radial-gradient(circle,rgba(0,180,255,0.1)_0%,transparent_70%)] -top-[180px] -left-[120px] animate-ft-orb-1"></div>
+        <div className="ft-orb ft-orb-2 absolute rounded-full blur-[110px] pointer-events-none z-0 w-[420px] h-[420px] bg-[radial-gradient(circle,rgba(99,51,220,0.08)_0%,transparent_70%)] bottom-[30px] -right-[80px] animate-ft-orb-2"></div>
 
         <Reveal direction="up" delay={0.1}>
           <div className="relative z-10 max-w-[1240px] mx-auto px-8 pb-10">
@@ -968,6 +970,13 @@ export default function App() {
                     </div>
                   </div>
                 </a>
+                <div className="flex gap-2">
+                  {['NAAC', 'AICTE', 'NIRF'].map(p => (
+                    <span key={p} className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[0.62rem] font-bold text-[var(--primary)] tracking-wider">
+                      {p}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* 2. Downloads */}
@@ -1043,13 +1052,16 @@ export default function App() {
                     <div className="flex gap-4">
                       {/* Social Icons with Glowing Effects using Font Awesome */}
                       <a href="https://www.facebook.com/people/Gce-Erode/pfbid0Pm6izeW9sSHrQYj7ZUQSL3sBaQtth3i6yK3ZbjMpBqk6HbA6Z1qNNsmTYY7VjR57l/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] hover:shadow-[0_0_15px_rgba(24,119,242,0.6)] hover:-translate-y-1 transition-all duration-300">
-                        <i className="fa-brands fa-facebook-f text-lg"></i>
+                        <Facebook size={18} />
                       </a>
                       <a href="https://x.com/GceErode" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-black hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:-translate-y-1 transition-all duration-300">
-                        <i className="fa-brands fa-x-twitter text-lg"></i>
+                        <Twitter size={18} />
                       </a>
                       <a href="https://www.youtube.com/channel/UCDOtasTYkBrmuZTSNCuo6jg" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#FF0000] hover:border-[#FF0000] hover:shadow-[0_0_15px_rgba(255,0,0,0.6)] hover:-translate-y-1 transition-all duration-300">
-                        <i className="fa-brands fa-youtube text-lg"></i>
+                        <Youtube size={18} />
+                      </a>
+                      <a href="https://www.linkedin.com/company/gce-erode-irtt/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-[#0077B5] hover:border-[#0077B5] hover:shadow-[0_0_15px_rgba(0,119,181,0.6)] hover:-translate-y-1 transition-all duration-300">
+                        <Linkedin size={18} />
                       </a>
                     </div>
                   </div>
@@ -1141,71 +1153,214 @@ export default function App() {
                 </div>
               )}
 
-              {/* CSE Department Content */}
-              {selectedModal === 'cse' && (
+              {/* Universal Department Modal */}
+              {selectedModal && selectedModal !== 'principal' && (
                 <div className="relative z-10 w-full pt-4">
-                  <div className="text-center mb-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-[#10b981]/10 text-[#10b981] text-[0.75rem] font-bold tracking-widest uppercase mb-4 mx-auto">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> Faculty Directory
-                    </div>
-                    <h2 className="font-playfair text-3xl md:text-5xl font-extrabold text-white">Computer Science & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] to-[#00d4ff]">Engineering</span></h2>
-                  </div>
+                  {(() => {
+                    const deptsData: Record<string, any> = {
+                      civil: {
+                        name: 'Civil Engineering',
+                        hod: { name: 'Dr. P. Saravanakumar', qual: 'M.E., Ph.D.', spec: 'Structural Engineering', phone: '+91-94436 67806', email: 'grpsaravanan@gmail.com', img: 'https://gcee.ac.in/include/ajax/civil/assistant_professor1.jpg' },
+                        color: '#ff6b35',
+                        staff: [
+                          { name: 'Dr. P. Saravanakumar', role: 'Assistant Professor (Sr)', img: 'https://gcee.ac.in/include/ajax/civil/assistant_professor1.jpg' },
+                          { name: 'Dr. G.M. Gowthama kumar', role: 'Assistant Professor (Sr)', img: 'https://gcee.ac.in/include/ajax/civil/assistant_professor2.jpg' },
+                          { name: 'Dr. D. Sathies Kumar', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/civil/assistant_professor4.jpg' }
+                        ]
+                      },
+                      automobile: {
+                        name: 'Automobile Engineering',
+                        hod: { name: 'Dr. R. Senthilraja', qual: 'M.E., Ph.D', spec: 'Thermal Engineering', phone: '+91-94432 78504', email: 'senthilraja@irttech.ac.in', img: 'https://gcee.ac.in/include/ajax/auto/assistant_professor1.jpg' },
+                        color: '#00d4ff',
+                        staff: [
+                          { name: 'Dr. R. Senthilraja', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/auto/assistant_professor1.jpg' }
+                        ]
+                      },
+                      mech: {
+                        name: 'Mechanical Engineering',
+                        hod: { name: 'Dr. K. Balamurugan', qual: 'M.E., Ph.D', spec: 'Manufacturing Engineering', phone: '+91-9150166322', email: 'drkbalamurugan@gcee.ac.in', img: 'https://gcee.ac.in/include/ajax/mech/associate_professor5.jpg' },
+                        color: '#7c3aed',
+                        staff: [
+                          { name: 'Dr. K. Balamurugan', role: 'Associate Professor', img: 'https://gcee.ac.in/include/ajax/mech/associate_professor5.jpg' },
+                          { name: 'Dr. R. Senthilraja', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/mech/assistant_professor1.jpg' },
+                          { name: 'Mr. N. S. Nandakumar', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/mech/assistant_professor2.jpg' },
+                          { name: 'Dr. N. Vadivel', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/mech/assistant_professor5.jpeg' },
+                          { name: 'Mrs. K. Uma', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/mech/assistant_professor4.jpg' },
+                          { name: 'Mr. P. Gowtham', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/mech/assistant_professor3.jpg' }
+                        ]
+                      },
+                      eee: {
+                        name: 'Electrical & Electronics Engineering',
+                        hod: { name: 'Dr. M. Mohammadha Hussaini', qual: 'M.E., Ph.D', spec: 'Power Systems', phone: '+91-9443406070', email: 'hussaini1008@gmail.com', img: 'https://gcee.ac.in/include/ajax/eee/professor&hod.html'.replace('.html', '.jpg') },
+                        color: '#ffd166',
+                        staff: [
+                          { name: 'Dr. M. Mohammadha Hussaini', role: 'Associate Professor', img: 'https://gcee.ac.in/include/ajax/eee/professor&hod.jpg' },
+                          { name: 'Dr. B. Baby Priya', role: 'Associate Professor', img: 'https://gcee.ac.in/include/ajax/eee/associate_professor2.jpg' },
+                          { name: 'Dr. A. Vetrivel', role: 'Associate Professor', img: 'https://gcee.ac.in/include/ajax/eee/associate_professor3.jpg' },
+                          { name: 'Dr. S. Dhanapal', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/eee/assistant_professor1.jpg' },
+                          { name: 'Mrs. S. Gomathi', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/eee/assistant_professor2.jpg' },
+                          { name: 'Dr. K. Tamilselvan', role: 'Assistant Professor (Sr)', img: 'https://gcee.ac.in/include/ajax/eee/assistant_professor3.jpg' },
+                          { name: 'Dr. A. Gowthaman', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/eee/assistant_professor4.jpg' },
+                          { name: 'Dr. P. Govindasamy', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/eee/assistant_professor5.jpg' }
+                        ]
+                      },
+                      ece: {
+                        name: 'Electronics & Communication Engineering',
+                        hod: { name: 'Mr. M. RAJA', qual: 'M.E.', spec: 'Microwave Engineering', phone: '+91-9842765554', email: 'raja@irttech.ac.in', img: 'https://gcee.ac.in/include/ajax/ece/associate_professor1.jpg' },
+                        color: '#00d4ff',
+                        staff: [
+                          { name: 'Mr. M. Raja', role: 'Associate Professor', img: 'https://gcee.ac.in/include/ajax/ece/associate_professor1.jpg' },
+                          { name: 'Dr. G. Gowrison', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/ece/assistant_professor1.jpg' },
+                          { name: 'Mrs. S. Barathi', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/ece/assistant_professor2.jpg' },
+                          { name: 'Dr. R. Senthil Kumar', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/ece/assistant_professor3.jpg' },
+                          { name: 'S.K. Fairoze banu', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/ece/assistant_professor4.jpg' },
+                          { name: 'N. Madhavi', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/ece/assistant_professor5.jpg' },
+                          { name: 'Mr. P. Kaliram', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/ece/assistant_professor6.jpg' },
+                          { name: 'Dr. P. K. Kowsalya', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/ece/assistant_professor7.jpg' }
+                        ]
+                      },
+                      cse: {
+                        name: 'Computer Science & Engineering',
+                        hod: { name: 'Dr. A. Kavitha', qual: 'M.E., Ph.D', spec: 'Semantic Web Expert', phone: '9442513055', email: 'kavitha@gcee.ac.in', img: kavidhaImg },
+                        color: '#10b981',
+                        staff: [
+                          { name: 'Mr. R. Sivasubramanian', role: 'Associate Professor', img: rssImg },
+                          { name: 'Dr. G. Venkatachalam', role: 'Associate Professor', img: gvImg },
+                          { name: 'Dr. A. Kavitha', role: 'Associate Professor', img: kavidhaImg },
+                          { name: 'Mrs. M. Annapoorani', role: 'Assistant Professor (SR)', img: annapooraniImg },
+                          { name: 'Dr. S. Palanisamy', role: 'Assistant Professor (SR)', img: palanisamyImg },
+                          { name: 'Dr. N. Magesh', role: 'Assistant Professor (SR)', img: mageshImg },
+                          { name: 'Dr. D.S. Thenmozhi', role: 'Assistant Professor (SR)', img: thenmozhiImg },
+                          { name: 'Dr. V. Thilagavathe', role: 'Assistant Professor', img: thilagavathiImg },
+                          { name: 'Mrs. N. Vasuki', role: 'Assistant Professor', img: vasukiImg }
+                        ]
+                      },
+                      cseds: {
+                        name: 'CSE (Data Science)',
+                        hod: { name: 'Dr. A. Kavitha', qual: 'M.E., Ph.D', spec: 'Semantic Web Expert', phone: '9442513055', email: 'kavitha@gcee.ac.in', img: kavidhaImg },
+                        color: '#10b981',
+                        staff: [
+                          { name: 'Mr. R. Sivasubramanian', role: 'Associate Professor', img: rssImg },
+                          { name: 'Dr. G. Venkatachalam', role: 'Associate Professor', img: gvImg },
+                          { name: 'Dr. A. Kavitha', role: 'Associate Professor', img: kavidhaImg },
+                          { name: 'Mrs. M. Annapoorani', role: 'Assistant Professor (SR)', img: annapooraniImg },
+                          { name: 'Dr. S. Palanisamy', role: 'Assistant Professor (SR)', img: palanisamyImg }
+                        ]
+                      },
+                      it: {
+                        name: 'Information Technology',
+                        hod: { name: 'Dr. I. Bhuvaneshwarri', qual: 'M.E, Ph.D', spec: 'Big Data Analytics', phone: '+91-9442689006', email: 'ibw@gcee.ac.in', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor1.jpg' },
+                        color: '#7c3aed',
+                        staff: [
+                          { name: 'Dr. I. Bhuvaneshwarri', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor1.jpg' },
+                          { name: 'Dr. K.G. Maheswari', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/mca/assistant_professor1.jpg' },
+                          { name: 'Dr. M. Poongothai', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor2.jpg' },
+                          { name: 'Mrs. R. Sathyavani', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor3.jpg' },
+                          { name: 'Dr. S. Thilagavathi', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor4.jpg' },
+                          { name: 'Dr. S. Mohanasundaram', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor5.jpg' },
+                          { name: 'Dr. P. Thangavel', role: 'Assistant Professor (SR)', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor6.jpg' },
+                          { name: 'Dr. M. Sathyakala', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor7.jpg' },
+                          { name: 'Dr. M. N. Sudha', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor8.jpg' },
+                          { name: 'Mr. B. V. Prakash', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor9.jpg' },
+                          { name: 'Dr. R. Anurekha', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor10.jpg' },
+                          { name: 'Dr. K. Murugan', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor11_new.jpg' },
+                          { name: 'Dr. T. Sumathi', role: 'Assistant Professor', img: 'https://gcee.ac.in/include/ajax/it/assistant_professor12_new.jpg' }
+                        ]
+                      },
+                      mecse: {
+                        name: 'M.E. Computer Science & Engineering',
+                        hod: { name: 'Dr. A. Kavitha', qual: 'M.E., Ph.D', spec: 'Semantic Web Expert', phone: '9442513055', email: 'kavitha@gcee.ac.in', img: kavidhaImg },
+                        color: '#ff6b35',
+                        staff: [
+                          { name: 'Dr. A. Kavitha', role: 'Professor & HOD', img: kavidhaImg },
+                          { name: 'Dr. G. Venkatachalam', role: 'Associate Professor', img: gvImg }
+                        ]
+                      },
+                      mestruct: {
+                        name: 'M.E. Structural Engineering',
+                        hod: { name: 'Dr. P. Saravanakumar', qual: 'M.E., Ph.D.', spec: 'Structural Engineering', phone: '+91-94436 67806', email: 'grpsaravanan@gmail.com', img: 'https://gcee.ac.in/include/ajax/civil/assistant_professor1.jpg' },
+                        color: '#ff6b35',
+                        staff: [
+                          { name: 'Dr. P. Saravanakumar', role: 'Assistant Professor (Sr)', img: 'https://gcee.ac.in/include/ajax/civil/assistant_professor1.jpg' },
+                          { name: 'Dr. G.M. Gowthama kumar', role: 'Assistant Professor (Sr)', img: 'https://gcee.ac.in/include/ajax/civil/assistant_professor2.jpg' }
+                        ]
+                      },
+                      sh: {
+                        name: 'Science & Humanities',
+                        hod: { name: 'Mr. P. Asaigeethan', qual: 'M.Sc., M.Phil.', spec: 'Mathematics', phone: '+91-8526524811', email: 'mrajeswari@gct.ac.in', img: 'https://via.placeholder.com/150' },
+                        color: '#ec4899',
+                        staff: [
+                          { name: 'Dr. M. Rajeswari', role: 'First Year Coordinator', img: 'https://gcee.ac.in/include/ajax/science&humanities/associateprofessor6.jpg' },
+                          { name: 'Mr. P. Asaigeethan', role: 'HOD (Maths)', img: 'https://via.placeholder.com/150' }
+                        ]
+                      }
+                    };
 
-                  {/* HOD Profile Highlight */}
-                  <div className="mb-12 bg-[#0d1b26] border border-[#10b981]/20 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden group shadow-[0_10px_30px_rgba(16,185,129,0.05)]">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#10b981]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                    <img src={kavidhaImg} alt="Dr.A.Kavitha" className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-2xl border-2 border-[#10b981]/50 shadow-[0_0_20px_rgba(16,185,129,0.2)] shrink-0 z-10" />
-                    <div className="z-10 text-center md:text-left flex-1 w-full">
-                      <div className="text-[#10b981] font-bold text-sm tracking-widest uppercase mb-1">Head of the Department</div>
-                      <h3 className="font-playfair text-2xl md:text-3xl font-bold text-white mb-1">Dr. A. Kavitha <span className="text-[var(--gold)] text-sm font-mono ml-2">M.E., Ph.D</span></h3>
-                      <p className="text-[0.8rem] text-white/60 mb-4">Semantic Web Expert</p>
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-                        <div className="bg-white/5 rounded-xl p-3 border border-white/5 text-left transition-colors hover:border-[#10b981]/50">
-                          <div className="text-[0.65rem] text-white/40 uppercase font-bold tracking-wider mb-1">Conferences</div>
-                          <div className="font-mono text-xl text-white">3</div>
-                        </div>
-                        <div className="bg-white/5 rounded-xl p-3 border border-white/5 text-left transition-colors hover:border-[#10b981]/50">
-                          <div className="text-[0.65rem] text-white/40 uppercase font-bold tracking-wider mb-1">Journals</div>
-                          <div className="font-mono text-xl text-white">6</div>
-                        </div>
-                        <div className="bg-white/5 rounded-xl p-3 border border-white/5 text-left lg:col-span-2 transition-colors hover:border-[#10b981]/50">
-                          <div className="text-[0.65rem] text-white/40 uppercase font-bold tracking-wider mb-1">Contact</div>
-                          <div className="text-sm text-white truncate text-ellipsis">9442513055<br /><span className="text-[0.7rem] text-[#10b981]">kavitha@gcee.ac.in</span></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    const dept = deptsData[selectedModal];
+                    if (!dept) return null;
 
-                  {/* Staff Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                    {[
-                      { name: 'Mr. R. Sivasubramanian', role: 'Associate Professor', img: rssImg },
-                      { name: 'Dr. G. Venkatachalam', role: 'Associate Professor', img: gvImg },
-                      { name: 'Dr. A. Kavidha', role: 'Associate Professor', img: null },
-                      { name: 'Mrs. M. Annapoorani', role: 'Assistant Professor (SR)', img: annapooraniImg },
-                      { name: 'Dr. S. Palanisamy', role: 'Assistant Professor (SR)', img: palanisamyImg },
-                      { name: 'Dr. N. Magesh', role: 'Assistant Professor (SR)', img: mageshImg },
-                      { name: 'Dr. D.S. Thenmozhi', role: 'Assistant Professor (SR)', img: thenmozhiImg },
-                      { name: 'Dr. V. Thilagavathe', role: 'Assistant Professor', img: thilagavathiImg },
-                      { name: 'Mrs. N. Vasuki', role: 'Assistant Professor', img: vasukiImg }
-                    ].map(staff => (
-                      <div key={staff.name} className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 flex items-center gap-4 transition-all duration-300 hover:bg-white/[0.08] hover:border-[#10b981]/30 hover:-translate-y-1 group">
-                        <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-black/40 flex justify-center items-center">
-                          {staff.img ? (
-                            <img src={staff.img} alt={staff.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                          ) : (
-                            <Users size={24} className="text-white/20" />
-                          )}
+                    return (
+                      <>
+                        <div className="text-center mb-10">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[var(--primary)] text-[0.75rem] font-bold tracking-widest uppercase mb-4 mx-auto" style={{ color: dept.color, backgroundColor: `${dept.color}1a`, borderColor: `${dept.color}33` }}>
+                            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: dept.color }}></span> Faculty Directory
+                          </div>
+                          <h2 className="font-playfair text-3xl md:text-5xl font-extrabold text-white">
+                            {dept.name.split(' & ').map((part: string, i: number) => (
+                              <React.Fragment key={i}>
+                                {i > 0 && ' & '}
+                                <span className={i > 0 ? "text-transparent bg-clip-text" : ""} style={i > 0 ? { backgroundImage: `linear-gradient(to right, ${dept.color}, #00d4ff)` } : {}}>
+                                  {part}
+                                </span>
+                              </React.Fragment>
+                            ))}
+                          </h2>
                         </div>
-                        <div className="flex flex-col justify-center text-left">
-                          <h4 className="font-bold text-[0.85rem] md:text-sm text-white leading-tight mb-1 group-hover:text-[#10b981] transition-colors">{staff.name}</h4>
-                          <div className="text-[0.65rem] text-white/50">{staff.role}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
 
-                  <p className="text-center text-xs text-white/30 mt-8">Note: This is a representative directory containing available records.</p>
+                        {/* HOD Profile Highlight */}
+                        <div className="mb-12 bg-[#0d1b26] border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 relative overflow-hidden group shadow-[0_10px_30px_rgba(0,0,0,0.3)]" style={{ borderColor: `${dept.color}33` }}>
+                          <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-20" style={{ backgroundColor: dept.color }}></div>
+                          <img src={dept.hod.img} alt={dept.hod.name} className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-2xl border-2 shadow-2xl shrink-0 z-10" style={{ borderColor: `${dept.color}80` }} onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/150')} />
+                          <div className="z-10 text-center md:text-left flex-1 w-full">
+                            <div className="font-bold text-sm tracking-widest uppercase mb-1" style={{ color: dept.color }}>Head of the Department</div>
+                            <h3 className="font-playfair text-2xl md:text-3xl font-bold text-white mb-1">{dept.hod.name} <span className="text-[var(--gold)] text-sm font-mono ml-2">{dept.hod.qual}</span></h3>
+                            <p className="text-[0.8rem] text-white/60 mb-4">{dept.hod.spec}</p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+                              <div className="bg-white/5 rounded-xl p-3 border border-white/5 text-left transition-colors hover:border-white/20">
+                                <div className="text-[0.65rem] text-white/40 uppercase font-bold tracking-wider mb-1">Contact</div>
+                                <div className="text-sm text-white">{dept.hod.phone}</div>
+                              </div>
+                              <div className="bg-white/5 rounded-xl p-3 border border-white/5 text-left transition-colors hover:border-white/20">
+                                <div className="text-[0.65rem] text-white/40 uppercase font-bold tracking-wider mb-1">Email</div>
+                                <div className="text-sm text-white truncate">{dept.hod.email}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Staff Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                          {dept.staff.map((staff: any) => (
+                            <div key={staff.name} className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 flex items-center gap-4 transition-all duration-300 hover:bg-white/[0.08] hover:-translate-y-1 group" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
+                              <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-black/40 flex justify-center items-center">
+                                {staff.img ? (
+                                  <img src={staff.img} alt={staff.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onError={(e) => (e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-white/20">👤</div>')} />
+                                ) : (
+                                  <Users size={24} className="text-white/20" />
+                                )}
+                              </div>
+                              <div className="flex flex-col justify-center text-left">
+                                <h4 className="font-bold text-[0.85rem] md:text-sm text-white leading-tight mb-1 group-hover:text-[var(--primary)] transition-colors">{staff.name}</h4>
+                                <div className="text-[0.65rem] text-white/50">{staff.role}</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        <p className="text-center text-xs text-white/30 mt-8">Note: This is a representative directory containing available records from official site.</p>
+                      </>
+                    );
+                  })()}
                 </div>
               )}
             </motion.div>
