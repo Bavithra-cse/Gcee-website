@@ -2,28 +2,18 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import gce1 from '../assets/gce1.jpeg';
-import gce2 from '../assets/gce2.jpeg';
-import gce3 from '../assets/gce3.jpeg';
 import gce4 from '../assets/gce4.jpeg';
-import gce5 from '../assets/gce5.jpeg';
-import gce6 from '../assets/gce6.jpeg';
-import gce7 from '../assets/gce7.jpeg';
-import gce8 from '../assets/gce8.jpeg';
-import gce9 from '../assets/gce9.jpeg';
-import gce10 from '../assets/gce10.jpeg';
+import libraryEntrance from '../assets/training/library.jpeg';
+import mainCampus from '../assets/maincampus.jpeg';
+import placement from '../assets/placement photo.jpeg';
+import research from '../assets/research.jpeg';
 
 const images = [
-  { src: gce1, alt: 'Campus View 1', caption: 'Lush Green Campus' },
-  { src: gce2, alt: 'Campus View 2', caption: 'Academic Block' },
-  { src: gce3, alt: 'Campus View 3', caption: 'Student Laboratories' },
-  { src: gce4, alt: 'Campus View 4', caption: 'Sports Facilities' },
-  { src: gce5, alt: 'Campus View 5', caption: 'Library Building' },
-  { src: gce6, alt: 'Campus View 6', caption: 'Auditorium' },
-  { src: gce7, alt: 'Campus View 7', caption: 'Hostel Grounds' },
-  { src: gce8, alt: 'Campus View 8', caption: 'Innovation Hub' },
-  { src: gce9, alt: 'Campus View 9', caption: 'Central Computing' },
-  { src: gce10, alt: 'Campus View 10', caption: 'Workshop' },
+  { src: mainCampus, alt: 'Campus Building with Fountain', caption: 'Campus Infrastructure' },
+  { src: gce4, alt: 'Sports Ground', caption: 'Sports Facilities' },
+  { src: placement, alt: 'Students in Placement Training', caption: 'Placement & Training' },
+  { src: libraryEntrance, alt: 'Central Library Entrance', caption: 'Library Facilities' },
+  { src: research, alt: 'Laboratories', caption: 'Laboratory Facilities' },
 ];
 
 const AUTOPLAY_INTERVAL = 4000; // 4 seconds

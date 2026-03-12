@@ -101,3 +101,47 @@
 .reveal-left.visible { opacity:1; transform:translateX(0); }
 .reveal-right { opacity:0; transform:translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal-right.visible { opacity:1; transform:translateX(0); }
+/* Footer Redesign Styles */
+.footer-link {
+  @apply relative text-white/40 transition-colors duration-300 hover:text-white no-underline;
+}
+
+.footer-link::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-0 h-[1px] bg-gradient-to-r from-[var(--primary)] to-[var(--primary2)] transition-all duration-300;
+}
+
+.footer-link:hover::after {
+  @apply w-full;
+}
+
+.glass-footer {
+  background: linear-gradient(to bottom, rgba(2, 12, 24, 0.8), rgba(2, 12, 24, 0.95));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-glow-fb:hover {
+  box-shadow: 0 0 15px rgba(24, 119, 242, 0.5);
+  background-color: #1877F2;
+  border-color: #1877F2;
+}
+
+.social-glow-tw:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  background-color: #000000;
+  border-color: #333;
+}
+
+.social-glow-yt:hover {
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  background-color: #FF0000;
+  border-color: #FF0000;
+}
+
+.social-glow-li:hover {
+  box-shadow: 0 0 15px rgba(0, 119, 181, 0.5);
+  background-color: #0077B5;
+  border-color: #0077B5;
+}
