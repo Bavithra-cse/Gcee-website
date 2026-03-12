@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-playfair: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+  --bg: #06080f;
+  --bg2: #0b0f1c;
+  --surface: #0f1520;
+  --surface2: #161e2e;
+  --border: rgba(255,255,255,0.08);
+  --primary: #4db8d4;
+  --primary2: #2a8fa8;
+  --accent: #e8703a;
+  --gold: #e6c04a;
+  --text: #dde4ef;
+  --text2: #7a8fa8;
+  --text3: #4a5e73;
+  --glow: rgba(77,184,212,0.12);
+  --glow2: rgba(232,112,58,0.10);
+  --radius: 14px;
+  --radius2: 20px;
+}
+
+[data-theme="light"] {
+  --bg: #f0f4fa;
+  --bg2: #e4eaf5;
+  --surface: #ffffff;
+  --surface2: #f8faff;
+  --border: rgba(0,0,0,0.08);
+  --text: #0d1321;
+  --text2: #3a4a5e;
+  --text3: #6b7c93;
+  --glow: rgba(0,212,255,0.08);
+  --glow2: rgba(255,107,53,0.07);
+}
+
+@layer base {
+  * {
+    @apply box-border m-0 p-0;
+  }
+  html {
+    @apply scroll-smooth;
+    font-size: 16px;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    @apply font-normal antialiased tracking-tight overflow-x-hidden transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply inline-flex items-center gap-2 font-mono text-[0.72rem] tracking-[3px] uppercase text-[var(--primary)] mb-4;
+  }
+  .section-label::before {
+    content: '';
+    @apply block w-5 h-[1px] bg-[var(--primary)];
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, var(--primary), #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Custom Animations from the provided HTML */
+@keyframes gridShift { from { transform: translateY(0); } to { transform: translateY(60px); } }
+@keyframes orbFloat1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px,-60px); } }
+@keyframes orbFloat2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-40px,40px); } }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.5); } }
+@keyframes tickerMove { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+@keyframes ftOrb1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(50px,-35px)} }
+@keyframes ftOrb2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,28px)} }
+@keyframes marqueeVertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.animate-grid-shift { animation: gridShift 20s linear infinite; }
+.animate-orb-float-1 { animation: orbFloat1 12s ease-in-out infinite; }
+.animate-orb-float-2 { animation: orbFloat2 15s ease-in-out infinite; }
+.animate-pulse-slow { animation: pulse 2s infinite; }
+.animate-ticker { animation: tickerMove 40s linear infinite; }
+.animate-bounce-slow { animation: bounce 2s infinite; }
+.animate-marquee-vertical { animation: marqueeVertical 30s linear infinite; }
+.animate-marquee-vertical:hover { animation-play-state: paused; }
+
+/* Reveal classes */
+.reveal { opacity:0; transform:translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-left { opacity:0; transform:translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-left.visible { opacity:1; transform:translateX(0); }
+.reveal-right { opacity:0; transform:translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-right.visible { opacity:1; transform:translateX(0); }
